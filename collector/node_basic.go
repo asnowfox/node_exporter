@@ -16,7 +16,7 @@ type linuxBasicCollector struct {
 	hostName *prometheus.Desc
 	cpu      *prometheus.Desc
 	mem      *prometheus.Desc
-	disk      *prometheus.Desc
+	disk     *prometheus.Desc
 	netDev   *prometheus.Desc
 }
 
@@ -35,12 +35,12 @@ func NewLinuxBasicCollector() (Collector, error) {
 		hostName: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, basicCollectorSubsystem, "host_name"),
 			"操作系统信息.",
-			[]string{"hostname", "os", "platform", "platformFamily", "platformVersion", "host_id"}, nil,
+			[]string{"hostname", "os", "platform", "platform_family", "platform_version", "host_id"}, nil,
 		),
 		cpu: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, basicCollectorSubsystem, "cpu"),
 			"cpu信息.",
-			[]string{"count", "core", "vendorId", "modelName", "mhz"}, nil,
+			[]string{"count", "core", "vendor_id", "model_name", "mhz"}, nil,
 		),
 
 		mem: prometheus.NewDesc(
@@ -98,7 +98,7 @@ func (c *linuxBasicCollector) updateDisk(ch chan<- prometheus.Metric) error {
 		total = total + b.Total
 	}
 
-	ch <- prometheus.MustNewConstMetric(c.disk, prometheus.CounterValue, 1,strconv.FormatUint(total,10) )
+	ch <- prometheus.MustNewConstMetric(c.disk, prometheus.CounterValue, 1, strconv.FormatUint(total, 10))
 	return nil
 
 }
@@ -143,7 +143,6 @@ func (c *linuxBasicCollector) updateCpuInfo(ch chan<- prometheus.Metric) error {
 	if len(a) < 1 {
 		return errors.New("no cpu info")
 	}
-	//"count", "core","vendorId","modelName","mhz"
 	ch <- prometheus.MustNewConstMetric(c.cpu, prometheus.CounterValue, 1, strconv.Itoa(len(a)),
 		strconv.Itoa(int(a[0].Cores)), a[0].VendorID, a[0].ModelName, strconv.FormatFloat(float64(a[0].Mhz), 'f', 0, 64))
 	return nil
