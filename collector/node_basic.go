@@ -48,7 +48,7 @@ func NewLinuxBasicCollector() (Collector, error) {
 		hostName: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, basicCollectorSubsystem, "host_name"),
 			"操作系统信息.",
-			[]string{"hostname", "os", "platform", "platform_family", "platform_version", "host_id"}, nil,
+			[]string{"hostname", "os", "platform", "platform_family", "platform_version", "host_id","virtualization_system"}, nil,
 		),
 		cpu: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, basicCollectorSubsystem, "cpu"),
@@ -122,7 +122,10 @@ func (c *linuxBasicCollector) updateHostName(ch chan<- prometheus.Metric) error 
 	if err != nil {
 		return err
 	}
-	ch <- prometheus.MustNewConstMetric(c.hostName, prometheus.CounterValue, 1, a.Hostname, a.OS, a.Platform, a.PlatformFamily, a.PlatformVersion, a.HostID)
+
+	ch <- prometheus.MustNewConstMetric(c.hostName, prometheus.CounterValue,
+		1, a.Hostname, a.OS, a.Platform, a.PlatformFamily,
+		a.PlatformVersion, a.HostID,a.VirtualizationSystem)
 	return nil
 
 }
