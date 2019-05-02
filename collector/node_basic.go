@@ -18,6 +18,7 @@ import (
 	"github.com/deckarep/golang-set"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/common/log"
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/disk"
 	"github.com/shirou/gopsutil/host"
@@ -169,6 +170,7 @@ func (c *linuxBasicCollector) updateCpuInfo(ch chan<- prometheus.Metric) error {
 	mHz := 0.0
 	for _, e := range a {
 		cores.Add(e.CoreID)
+		log.Info("cpu mhz %f",e.Mhz)
 		mHz +=float64(e.Mhz)
 		cnt++
 	}
