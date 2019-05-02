@@ -156,7 +156,7 @@ func (c *linuxBasicCollector) updateCpuInfo(ch chan<- prometheus.Metric) error {
 	if err != nil {
 		return err
 	}
-	log.Info("count is %d",len(a))
+	log.Infoln("count is %d",len(a))
 	if len(a) < 1 {
 		return errors.New("no cpu info")
 	}
