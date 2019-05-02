@@ -43,13 +43,12 @@ func init() {
 
 // NewCPUCollector returns a new Collector exposing kernel/system statistics.
 func NewLinuxBasicCollector() (Collector, error) {
-
 	return &linuxBasicCollector{
 		hostName: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, basicCollectorSubsystem, "host_info"),
 			"操作系统信息.",
 			[]string{"hostname", "os", "platform", "platform_family", "platform_version",
-				"host_id","virtualization_system","virtualization_role"}, nil,
+				"host_id", "virtualization_system", "virtualization_role"}, nil,
 		),
 		cpu: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, basicCollectorSubsystem, "cpu"),
@@ -125,7 +124,7 @@ func (c *linuxBasicCollector) updateHostName(ch chan<- prometheus.Metric) error 
 	}
 	ch <- prometheus.MustNewConstMetric(c.hostName, prometheus.CounterValue,
 		1, a.Hostname, a.OS, a.Platform, a.PlatformFamily,
-		a.PlatformVersion, a.HostID,a.VirtualizationSystem,a.VirtualizationRole)
+		a.PlatformVersion, a.HostID, a.VirtualizationSystem, a.VirtualizationRole)
 	return nil
 
 }
@@ -162,5 +161,4 @@ func (c *linuxBasicCollector) updateCpuInfo(ch chan<- prometheus.Metric) error {
 	ch <- prometheus.MustNewConstMetric(c.cpu, prometheus.CounterValue, 1, strconv.Itoa(len(a)),
 		strconv.Itoa(int(a[0].Cores)), a[0].VendorID, a[0].ModelName, strconv.FormatFloat(float64(a[0].Mhz), 'f', 0, 64))
 	return nil
-
 }
