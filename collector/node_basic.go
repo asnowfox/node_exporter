@@ -170,7 +170,6 @@ func (c *linuxBasicCollector) updateCpuInfo(ch chan<- prometheus.Metric) error {
 	mHz := 0.0
 	for _, e := range a {
 		cores.Add(e.CoreID)
-		log.Info("cpu mhz %f",e.Mhz)
 		mHz +=float64(e.Mhz)
 		cnt++
 	}
