@@ -18,7 +18,6 @@ import (
 	"github.com/deckarep/golang-set"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/common/log"
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/disk"
 	"github.com/shirou/gopsutil/host"
@@ -166,11 +165,15 @@ func (c *linuxBasicCollector) updateCpuInfo(ch chan<- prometheus.Metric) error {
 		s.Add(e.PhysicalID)
 	}
 	cores := mapset.NewThreadUnsafeSet()
+	cnt :=0.0
+	mHz := 0.0
 	for _, e := range a {
-		log.Info("core id is %s",e.CoreID)
 		cores.Add(e.CoreID)
+		mHz +=float64(e.Mhz)
+		cnt++
 	}
+	mHz = mHz/cnt
 	ch <- prometheus.MustNewConstMetric(c.cpu, prometheus.CounterValue, 1, strconv.Itoa(len(s.ToSlice())),
-		strconv.Itoa(len(cores.ToSlice())), a[0].VendorID, a[0].ModelName, strconv.FormatFloat(float64(a[0].Mhz), 'f', 0, 64))
+		strconv.Itoa(len(cores.ToSlice())), a[0].VendorID, a[0].ModelName, strconv.FormatFloat(mHz, 'f', 0, 64))
 	return nil
 }
