@@ -46,7 +46,7 @@ func NewLinuxBasicCollector() (Collector, error) {
 
 	return &linuxBasicCollector{
 		hostName: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, basicCollectorSubsystem, "host_name"),
+			prometheus.BuildFQName(namespace, basicCollectorSubsystem, "host_info"),
 			"操作系统信息.",
 			[]string{"hostname", "os", "platform", "platform_family", "platform_version", "host_id","virtualization_system"}, nil,
 		),
