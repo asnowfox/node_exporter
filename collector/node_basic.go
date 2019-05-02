@@ -15,6 +15,7 @@ package collector
 
 import (
 	"encoding/json"
+	"github.com/deckarep/golang-set"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
@@ -23,6 +24,7 @@ import (
 	"github.com/shirou/gopsutil/host"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/net"
+
 	"strconv"
 )
 
@@ -156,11 +158,15 @@ func (c *linuxBasicCollector) updateCpuInfo(ch chan<- prometheus.Metric) error {
 	if err != nil {
 		return err
 	}
-	log.Infoln("count is %d",len(a))
+	log.Infoln("count is %d", len(a))
 	if len(a) < 1 {
 		return errors.New("no cpu info")
 	}
-	ch <- prometheus.MustNewConstMetric(c.cpu, prometheus.CounterValue, 1, strconv.Itoa(len(a)),
-		strconv.Itoa(int(a[0].Cores)), a[0].VendorID, a[0].ModelName, strconv.FormatFloat(float64(a[0].Mhz), 'f', 0, 64))
+	s := mapset.NewThreadUnsafeSet()
+	for _, e := range a {
+		s.Add(e.CoreID)
+	}
+	ch <- prometheus.MustNewConstMetric(c.cpu, prometheus.CounterValue, 1, strconv.Itoa(len(s.ToSlice())),
+		strconv.Itoa(int(a[0].Cores)/len(s.ToSlice())), a[0].VendorID, a[0].ModelName, strconv.FormatFloat(float64(a[0].Mhz), 'f', 0, 64))
 	return nil
 }
