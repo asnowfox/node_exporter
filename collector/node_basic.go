@@ -165,6 +165,6 @@ func (c *linuxBasicCollector) updateCpuInfo(ch chan<- prometheus.Metric) error {
 		s.Add(e.PhysicalID)
 	}
 	ch <- prometheus.MustNewConstMetric(c.cpu, prometheus.CounterValue, 1, strconv.Itoa(len(s.ToSlice())),
-		strconv.Itoa(int(a[0].Cores)/len(s.ToSlice())), a[0].VendorID, a[0].ModelName, strconv.FormatFloat(float64(a[0].Mhz), 'f', 0, 64))
+		strconv.Itoa(int(a[0].Cores)), a[0].VendorID, a[0].ModelName, strconv.FormatFloat(float64(a[0].Mhz), 'f', 0, 64))
 	return nil
 }
