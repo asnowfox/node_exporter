@@ -5,8 +5,8 @@ USER=root
 DAEMON='node_exporter --web.listen-address=:60616'
 
 start() {
-  pid=$(ps -ef | grep 'node_exporter --web.listen-address=:60616' | grep -v grep | awk '{print $2}')
-  if $pid ; then
+  count=$(ps -ef | grep 'node_exporter --web.listen-address=:60616' | grep -v grep | wc -l)
+  if [ $count != 0 ] ; then
     echo 'node_exporter already is running' >&2
     return 1
   fi
@@ -25,9 +25,9 @@ stop() {
 }
 
 status() {
-  pid=$(ps -ef | grep 'node_exporter --web.listen-address=:60616' | grep -v grep | awk '{print $2}')
+  count=$(ps -ef | grep 'node_exporter --web.listen-address=:60616' | grep -v grep | wc -l)
 
-  if $pid ; then
+  if [ $count != 0 ] ; then
     echo 'node_exporter is running' >&2
   else
     echo 'node_exporter is not running' >&2
