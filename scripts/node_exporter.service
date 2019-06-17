@@ -11,6 +11,9 @@ start() {
     return 1
   fi
   local CMD="$DAEMON &"
+  pid=$(ps -ef | grep $DAEMON | grep -v grep | awk '{print $2}')
+  echo $pid > $PIDFILE
+
   echo 'Starting node_exporter…' >&2
   su -s /bin/sh -c "$CMD" $USER
   echo 'node_exporter started' >&2
