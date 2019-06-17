@@ -18,7 +18,7 @@ start() {
 }
 
 stop() {
-  echo 'Stopping node_exporter…' >&2
+  echo 'Stopping node_exporter...' >&2
   pid=$(ps -ef | grep 'node_exporter --web.listen-address=:60616' | grep -v grep | awk '{print $2}')
   kill -15 $pid && rm -f "$PIDFILE"
   echo 'Service node_exporter stopped' >&2
