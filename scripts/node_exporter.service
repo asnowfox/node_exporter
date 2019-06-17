@@ -18,6 +18,11 @@ start() {
 }
 
 stop() {
+  count=$(ps -ef | grep 'node_exporter --web.listen-address=:60616' | grep -v grep | wc -l)
+  if [ $count == 0 ] ; then
+    echo 'no node_exporter is running' >&2
+    return 1
+  fi
   echo 'Stopping node_exporter...' >&2
   pid=$(ps -ef | grep 'node_exporter --web.listen-address=:60616' | grep -v grep | awk '{print $2}')
   kill -15 $pid && rm -f "$PIDFILE"
