@@ -1,4 +1,4 @@
-Package: prometheus_node_exporter
+Package: prometheus-node-exporter
 Version: %VERSION%
 Architecture: amd64
 Source: node_exporter
