@@ -2,7 +2,7 @@
 # description: prometheus node exporter service
 
 USER=root
-DAEMON=node_exporter
+DAEMON=node_exporter --web.listen-address=:60616
 PIDFILE=/var/run/node_exporter.pid
 
 start() {
