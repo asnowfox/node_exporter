@@ -72,7 +72,7 @@ func NewLinuxBasicCollector() (Collector, error) {
 		netDev: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, basicCollectorSubsystem, "net_dev"),
 			"网卡信息.",
-			[]string{"if_name", "ip_address", "hw_address", "mtu"}, nil,
+			[]string{"if_index", "if_name", "ip_address", "hw_address", "mtu"}, nil,
 		),
 	}, nil
 }
@@ -147,7 +147,7 @@ func (c *linuxBasicCollector) updateNetDevInfo(ch chan<- prometheus.Metric) erro
 	}
 	for _, e := range a {
 		s, _ := json.Marshal(e.Addrs)
-		ch <- prometheus.MustNewConstMetric(c.netDev, prometheus.CounterValue, 1, e.Name, string(s), e.HardwareAddr, strconv.Itoa(e.MTU))
+		ch <- prometheus.MustNewConstMetric(c.netDev, prometheus.CounterValue, 1, strconv.Itoa(e.Index), e.Name, string(s), e.HardwareAddr, strconv.Itoa(e.MTU))
 	}
 	return nil
 }
@@ -165,14 +165,14 @@ func (c *linuxBasicCollector) updateCpuInfo(ch chan<- prometheus.Metric) error {
 		s.Add(e.PhysicalID)
 	}
 	cores := mapset.NewThreadUnsafeSet()
-	cnt :=0.0
+	cnt := 0.0
 	mHz := 0.0
 	for _, e := range a {
 		cores.Add(e.CoreID)
-		mHz +=float64(e.Mhz)
+		mHz += float64(e.Mhz)
 		cnt++
 	}
-	mHz = mHz/cnt
+	mHz = mHz / cnt
 	ch <- prometheus.MustNewConstMetric(c.cpu, prometheus.CounterValue, 1, strconv.Itoa(len(s.ToSlice())),
 		strconv.Itoa(len(cores.ToSlice())), a[0].VendorID, a[0].ModelName, strconv.FormatFloat(mHz, 'f', 0, 64))
 	return nil
