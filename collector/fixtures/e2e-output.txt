@@ -1078,6 +1078,7 @@ node_load5 0.37
 node_md_blocks{device="md0"} 248896
 node_md_blocks{device="md00"} 4.186624e+06
 node_md_blocks{device="md10"} 3.14159265e+08
+node_md_blocks{device="md101"} 322560
 node_md_blocks{device="md11"} 4.190208e+06
 node_md_blocks{device="md12"} 3.886394368e+09
 node_md_blocks{device="md120"} 2.095104e+06
@@ -1095,7 +1096,8 @@ node_md_blocks{device="md9"} 523968
 node_md_blocks_synced{device="md0"} 248896
 node_md_blocks_synced{device="md00"} 4.186624e+06
 node_md_blocks_synced{device="md10"} 3.14159265e+08
-node_md_blocks_synced{device="md11"} 4.190208e+06
+node_md_blocks_synced{device="md101"} 322560
+node_md_blocks_synced{device="md11"} 0
 node_md_blocks_synced{device="md12"} 3.886394368e+09
 node_md_blocks_synced{device="md120"} 2.095104e+06
 node_md_blocks_synced{device="md126"} 1.855870976e+09
@@ -1106,58 +1108,141 @@ node_md_blocks_synced{device="md4"} 4.883648e+06
 node_md_blocks_synced{device="md6"} 1.6775552e+07
 node_md_blocks_synced{device="md7"} 7.813735424e+09
 node_md_blocks_synced{device="md8"} 1.6775552e+07
-node_md_blocks_synced{device="md9"} 523968
-# HELP node_md_disks Total number of disks of device.
+node_md_blocks_synced{device="md9"} 0
+# HELP node_md_disks Number of active/failed/spare disks of device.
 # TYPE node_md_disks gauge
-node_md_disks{device="md0"} 2
-node_md_disks{device="md00"} 1
-node_md_disks{device="md10"} 2
-node_md_disks{device="md11"} 2
-node_md_disks{device="md12"} 2
-node_md_disks{device="md120"} 2
-node_md_disks{device="md126"} 2
-node_md_disks{device="md127"} 2
-node_md_disks{device="md219"} 3
-node_md_disks{device="md3"} 8
-node_md_disks{device="md4"} 2
-node_md_disks{device="md6"} 2
-node_md_disks{device="md7"} 4
-node_md_disks{device="md8"} 2
-node_md_disks{device="md9"} 4
-# HELP node_md_disks_active Number of active disks of device.
-# TYPE node_md_disks_active gauge
-node_md_disks_active{device="md0"} 2
-node_md_disks_active{device="md00"} 1
-node_md_disks_active{device="md10"} 2
-node_md_disks_active{device="md11"} 2
-node_md_disks_active{device="md12"} 2
-node_md_disks_active{device="md120"} 2
-node_md_disks_active{device="md126"} 2
-node_md_disks_active{device="md127"} 2
-node_md_disks_active{device="md219"} 0
-node_md_disks_active{device="md3"} 8
-node_md_disks_active{device="md4"} 0
-node_md_disks_active{device="md6"} 1
-node_md_disks_active{device="md7"} 3
-node_md_disks_active{device="md8"} 2
-node_md_disks_active{device="md9"} 4
-# HELP node_md_is_active Indicator whether the md-device is active or not.
-# TYPE node_md_is_active gauge
-node_md_is_active{device="md0"} 1
-node_md_is_active{device="md00"} 1
-node_md_is_active{device="md10"} 1
-node_md_is_active{device="md11"} 1
-node_md_is_active{device="md12"} 1
-node_md_is_active{device="md120"} 1
-node_md_is_active{device="md126"} 1
-node_md_is_active{device="md127"} 1
-node_md_is_active{device="md219"} 0
-node_md_is_active{device="md3"} 1
-node_md_is_active{device="md4"} 0
-node_md_is_active{device="md6"} 1
-node_md_is_active{device="md7"} 1
-node_md_is_active{device="md8"} 1
-node_md_is_active{device="md9"} 1
+node_md_disks{device="md0",state="active"} 2
+node_md_disks{device="md0",state="failed"} 0
+node_md_disks{device="md0",state="spare"} 0
+node_md_disks{device="md00",state="active"} 1
+node_md_disks{device="md00",state="failed"} 0
+node_md_disks{device="md00",state="spare"} 0
+node_md_disks{device="md10",state="active"} 2
+node_md_disks{device="md10",state="failed"} 0
+node_md_disks{device="md10",state="spare"} 0
+node_md_disks{device="md101",state="active"} 3
+node_md_disks{device="md101",state="failed"} 0
+node_md_disks{device="md101",state="spare"} 0
+node_md_disks{device="md11",state="active"} 2
+node_md_disks{device="md11",state="failed"} 1
+node_md_disks{device="md11",state="spare"} 2
+node_md_disks{device="md12",state="active"} 2
+node_md_disks{device="md12",state="failed"} 0
+node_md_disks{device="md12",state="spare"} 0
+node_md_disks{device="md120",state="active"} 2
+node_md_disks{device="md120",state="failed"} 0
+node_md_disks{device="md120",state="spare"} 0
+node_md_disks{device="md126",state="active"} 2
+node_md_disks{device="md126",state="failed"} 0
+node_md_disks{device="md126",state="spare"} 0
+node_md_disks{device="md127",state="active"} 2
+node_md_disks{device="md127",state="failed"} 0
+node_md_disks{device="md127",state="spare"} 0
+node_md_disks{device="md219",state="active"} 0
+node_md_disks{device="md219",state="failed"} 0
+node_md_disks{device="md219",state="spare"} 3
+node_md_disks{device="md3",state="active"} 8
+node_md_disks{device="md3",state="failed"} 0
+node_md_disks{device="md3",state="spare"} 2
+node_md_disks{device="md4",state="active"} 0
+node_md_disks{device="md4",state="failed"} 1
+node_md_disks{device="md4",state="spare"} 1
+node_md_disks{device="md6",state="active"} 1
+node_md_disks{device="md6",state="failed"} 1
+node_md_disks{device="md6",state="spare"} 1
+node_md_disks{device="md7",state="active"} 3
+node_md_disks{device="md7",state="failed"} 1
+node_md_disks{device="md7",state="spare"} 0
+node_md_disks{device="md8",state="active"} 2
+node_md_disks{device="md8",state="failed"} 0
+node_md_disks{device="md8",state="spare"} 2
+node_md_disks{device="md9",state="active"} 4
+node_md_disks{device="md9",state="failed"} 2
+node_md_disks{device="md9",state="spare"} 1
+# HELP node_md_disks_required Total number of disks of device.
+# TYPE node_md_disks_required gauge
+node_md_disks_required{device="md0"} 2
+node_md_disks_required{device="md00"} 1
+node_md_disks_required{device="md10"} 2
+node_md_disks_required{device="md101"} 3
+node_md_disks_required{device="md11"} 2
+node_md_disks_required{device="md12"} 2
+node_md_disks_required{device="md120"} 2
+node_md_disks_required{device="md126"} 2
+node_md_disks_required{device="md127"} 2
+node_md_disks_required{device="md219"} 0
+node_md_disks_required{device="md3"} 8
+node_md_disks_required{device="md4"} 0
+node_md_disks_required{device="md6"} 2
+node_md_disks_required{device="md7"} 4
+node_md_disks_required{device="md8"} 2
+node_md_disks_required{device="md9"} 4
+# HELP node_md_state Indicates the state of md-device.
+# TYPE node_md_state gauge
+node_md_state{device="md0",state="active"} 1
+node_md_state{device="md0",state="inactive"} 0
+node_md_state{device="md0",state="recovering"} 0
+node_md_state{device="md0",state="resync"} 0
+node_md_state{device="md00",state="active"} 1
+node_md_state{device="md00",state="inactive"} 0
+node_md_state{device="md00",state="recovering"} 0
+node_md_state{device="md00",state="resync"} 0
+node_md_state{device="md10",state="active"} 1
+node_md_state{device="md10",state="inactive"} 0
+node_md_state{device="md10",state="recovering"} 0
+node_md_state{device="md10",state="resync"} 0
+node_md_state{device="md101",state="active"} 1
+node_md_state{device="md101",state="inactive"} 0
+node_md_state{device="md101",state="recovering"} 0
+node_md_state{device="md101",state="resync"} 0
+node_md_state{device="md11",state="active"} 0
+node_md_state{device="md11",state="inactive"} 0
+node_md_state{device="md11",state="recovering"} 0
+node_md_state{device="md11",state="resync"} 1
+node_md_state{device="md12",state="active"} 1
+node_md_state{device="md12",state="inactive"} 0
+node_md_state{device="md12",state="recovering"} 0
+node_md_state{device="md12",state="resync"} 0
+node_md_state{device="md120",state="active"} 1
+node_md_state{device="md120",state="inactive"} 0
+node_md_state{device="md120",state="recovering"} 0
+node_md_state{device="md120",state="resync"} 0
+node_md_state{device="md126",state="active"} 1
+node_md_state{device="md126",state="inactive"} 0
+node_md_state{device="md126",state="recovering"} 0
+node_md_state{device="md126",state="resync"} 0
+node_md_state{device="md127",state="active"} 1
+node_md_state{device="md127",state="inactive"} 0
+node_md_state{device="md127",state="recovering"} 0
+node_md_state{device="md127",state="resync"} 0
+node_md_state{device="md219",state="active"} 0
+node_md_state{device="md219",state="inactive"} 1
+node_md_state{device="md219",state="recovering"} 0
+node_md_state{device="md219",state="resync"} 0
+node_md_state{device="md3",state="active"} 1
+node_md_state{device="md3",state="inactive"} 0
+node_md_state{device="md3",state="recovering"} 0
+node_md_state{device="md3",state="resync"} 0
+node_md_state{device="md4",state="active"} 0
+node_md_state{device="md4",state="inactive"} 1
+node_md_state{device="md4",state="recovering"} 0
+node_md_state{device="md4",state="resync"} 0
+node_md_state{device="md6",state="active"} 0
+node_md_state{device="md6",state="inactive"} 0
+node_md_state{device="md6",state="recovering"} 1
+node_md_state{device="md6",state="resync"} 0
+node_md_state{device="md7",state="active"} 1
+node_md_state{device="md7",state="inactive"} 0
+node_md_state{device="md7",state="recovering"} 0
+node_md_state{device="md7",state="resync"} 0
+node_md_state{device="md8",state="active"} 0
+node_md_state{device="md8",state="inactive"} 0
+node_md_state{device="md8",state="recovering"} 0
+node_md_state{device="md8",state="resync"} 1
+node_md_state{device="md9",state="active"} 0
+node_md_state{device="md9",state="inactive"} 0
+node_md_state{device="md9",state="recovering"} 0
+node_md_state{device="md9",state="resync"} 1
 # HELP node_memory_Active_anon_bytes Memory information field Active_anon_bytes.
 # TYPE node_memory_Active_anon_bytes gauge
 node_memory_Active_anon_bytes 2.068484096e+09
@@ -1577,6 +1662,7 @@ node_mountstats_nfs_event_write_extension_total{export="192.168.1.1:/srv/test",p
 node_mountstats_nfs_event_write_extension_total{export="192.168.1.1:/srv/test",protocol="udp"} 0
 # HELP node_mountstats_nfs_operations_major_timeouts_total Number of times a request has had a major timeout for a given operation.
 # TYPE node_mountstats_nfs_operations_major_timeouts_total counter
+node_mountstats_nfs_operations_major_timeouts_total{export="192.168.1.1:/srv/test",operation="ACCESS",protocol="udp"} 0
 node_mountstats_nfs_operations_major_timeouts_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="tcp"} 0
 node_mountstats_nfs_operations_major_timeouts_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="udp"} 0
 node_mountstats_nfs_operations_major_timeouts_total{export="192.168.1.1:/srv/test",operation="READ",protocol="tcp"} 0
@@ -1585,6 +1671,7 @@ node_mountstats_nfs_operations_major_timeouts_total{export="192.168.1.1:/srv/tes
 node_mountstats_nfs_operations_major_timeouts_total{export="192.168.1.1:/srv/test",operation="WRITE",protocol="udp"} 0
 # HELP node_mountstats_nfs_operations_queue_time_seconds_total Duration all requests spent queued for transmission for a given operation before they were sent, in seconds.
 # TYPE node_mountstats_nfs_operations_queue_time_seconds_total counter
+node_mountstats_nfs_operations_queue_time_seconds_total{export="192.168.1.1:/srv/test",operation="ACCESS",protocol="udp"} 9.007044786793922e+12
 node_mountstats_nfs_operations_queue_time_seconds_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="tcp"} 0
 node_mountstats_nfs_operations_queue_time_seconds_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="udp"} 0
 node_mountstats_nfs_operations_queue_time_seconds_total{export="192.168.1.1:/srv/test",operation="READ",protocol="tcp"} 0.006
@@ -1593,6 +1680,7 @@ node_mountstats_nfs_operations_queue_time_seconds_total{export="192.168.1.1:/srv
 node_mountstats_nfs_operations_queue_time_seconds_total{export="192.168.1.1:/srv/test",operation="WRITE",protocol="udp"} 0
 # HELP node_mountstats_nfs_operations_received_bytes_total Number of bytes received for a given operation, including RPC headers and payload.
 # TYPE node_mountstats_nfs_operations_received_bytes_total counter
+node_mountstats_nfs_operations_received_bytes_total{export="192.168.1.1:/srv/test",operation="ACCESS",protocol="udp"} 3.62996810236e+11
 node_mountstats_nfs_operations_received_bytes_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="tcp"} 0
 node_mountstats_nfs_operations_received_bytes_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="udp"} 0
 node_mountstats_nfs_operations_received_bytes_total{export="192.168.1.1:/srv/test",operation="READ",protocol="tcp"} 1.210292152e+09
@@ -1601,6 +1689,7 @@ node_mountstats_nfs_operations_received_bytes_total{export="192.168.1.1:/srv/tes
 node_mountstats_nfs_operations_received_bytes_total{export="192.168.1.1:/srv/test",operation="WRITE",protocol="udp"} 0
 # HELP node_mountstats_nfs_operations_request_time_seconds_total Duration all requests took from when a request was enqueued to when it was completely handled for a given operation, in seconds.
 # TYPE node_mountstats_nfs_operations_request_time_seconds_total counter
+node_mountstats_nfs_operations_request_time_seconds_total{export="192.168.1.1:/srv/test",operation="ACCESS",protocol="udp"} 1.953587717e+06
 node_mountstats_nfs_operations_request_time_seconds_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="tcp"} 0
 node_mountstats_nfs_operations_request_time_seconds_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="udp"} 0
 node_mountstats_nfs_operations_request_time_seconds_total{export="192.168.1.1:/srv/test",operation="READ",protocol="tcp"} 79.407
@@ -1609,6 +1698,7 @@ node_mountstats_nfs_operations_request_time_seconds_total{export="192.168.1.1:/s
 node_mountstats_nfs_operations_request_time_seconds_total{export="192.168.1.1:/srv/test",operation="WRITE",protocol="udp"} 0
 # HELP node_mountstats_nfs_operations_requests_total Number of requests performed for a given operation.
 # TYPE node_mountstats_nfs_operations_requests_total counter
+node_mountstats_nfs_operations_requests_total{export="192.168.1.1:/srv/test",operation="ACCESS",protocol="udp"} 2.927395007e+09
 node_mountstats_nfs_operations_requests_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="tcp"} 0
 node_mountstats_nfs_operations_requests_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="udp"} 0
 node_mountstats_nfs_operations_requests_total{export="192.168.1.1:/srv/test",operation="READ",protocol="tcp"} 1298
@@ -1617,6 +1707,7 @@ node_mountstats_nfs_operations_requests_total{export="192.168.1.1:/srv/test",ope
 node_mountstats_nfs_operations_requests_total{export="192.168.1.1:/srv/test",operation="WRITE",protocol="udp"} 0
 # HELP node_mountstats_nfs_operations_response_time_seconds_total Duration all requests took to get a reply back after a request for a given operation was transmitted, in seconds.
 # TYPE node_mountstats_nfs_operations_response_time_seconds_total counter
+node_mountstats_nfs_operations_response_time_seconds_total{export="192.168.1.1:/srv/test",operation="ACCESS",protocol="udp"} 1.667369447e+06
 node_mountstats_nfs_operations_response_time_seconds_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="tcp"} 0
 node_mountstats_nfs_operations_response_time_seconds_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="udp"} 0
 node_mountstats_nfs_operations_response_time_seconds_total{export="192.168.1.1:/srv/test",operation="READ",protocol="tcp"} 79.386
@@ -1625,6 +1716,7 @@ node_mountstats_nfs_operations_response_time_seconds_total{export="192.168.1.1:/
 node_mountstats_nfs_operations_response_time_seconds_total{export="192.168.1.1:/srv/test",operation="WRITE",protocol="udp"} 0
 # HELP node_mountstats_nfs_operations_sent_bytes_total Number of bytes sent for a given operation, including RPC headers and payload.
 # TYPE node_mountstats_nfs_operations_sent_bytes_total counter
+node_mountstats_nfs_operations_sent_bytes_total{export="192.168.1.1:/srv/test",operation="ACCESS",protocol="udp"} 5.26931094212e+11
 node_mountstats_nfs_operations_sent_bytes_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="tcp"} 0
 node_mountstats_nfs_operations_sent_bytes_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="udp"} 0
 node_mountstats_nfs_operations_sent_bytes_total{export="192.168.1.1:/srv/test",operation="READ",protocol="tcp"} 207680
@@ -1633,6 +1725,7 @@ node_mountstats_nfs_operations_sent_bytes_total{export="192.168.1.1:/srv/test",o
 node_mountstats_nfs_operations_sent_bytes_total{export="192.168.1.1:/srv/test",operation="WRITE",protocol="udp"} 0
 # HELP node_mountstats_nfs_operations_transmissions_total Number of times an actual RPC request has been transmitted for a given operation.
 # TYPE node_mountstats_nfs_operations_transmissions_total counter
+node_mountstats_nfs_operations_transmissions_total{export="192.168.1.1:/srv/test",operation="ACCESS",protocol="udp"} 2.927394995e+09
 node_mountstats_nfs_operations_transmissions_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="tcp"} 0
 node_mountstats_nfs_operations_transmissions_total{export="192.168.1.1:/srv/test",operation="NULL",protocol="udp"} 0
 node_mountstats_nfs_operations_transmissions_total{export="192.168.1.1:/srv/test",operation="READ",protocol="tcp"} 1298
@@ -2345,6 +2438,18 @@ node_qdisc_packets_total{device="wlan0",kind="fq"} 42
 # TYPE node_qdisc_requeues_total counter
 node_qdisc_requeues_total{device="eth0",kind="pfifo_fast"} 2
 node_qdisc_requeues_total{device="wlan0",kind="fq"} 1
+# HELP node_schedstat_running_seconds_total Number of seconds CPU spent running a process.
+# TYPE node_schedstat_running_seconds_total counter
+node_schedstat_running_seconds_total{cpu="0"} 2.045936778163039e+13
+node_schedstat_running_seconds_total{cpu="1"} 1.904686152592476e+13
+# HELP node_schedstat_timeslices_total Number of timeslices executed by CPU.
+# TYPE node_schedstat_timeslices_total counter
+node_schedstat_timeslices_total{cpu="0"} 4.767485306e+09
+node_schedstat_timeslices_total{cpu="1"} 5.145567945e+09
+# HELP node_schedstat_waiting_seconds_total Number of seconds spent by processing waiting for this CPU.
+# TYPE node_schedstat_waiting_seconds_total counter
+node_schedstat_waiting_seconds_total{cpu="0"} 3.43796328169361e+12
+node_schedstat_waiting_seconds_total{cpu="1"} 3.64107263788241e+12
 # HELP node_scrape_collector_duration_seconds node_exporter: Duration of a collector scrape.
 # TYPE node_scrape_collector_duration_seconds gauge
 # HELP node_scrape_collector_success node_exporter: Whether a collector succeeded.
@@ -2379,6 +2484,7 @@ node_scrape_collector_success{collector="nfsd"} 1
 node_scrape_collector_success{collector="pressure"} 1
 node_scrape_collector_success{collector="processes"} 1
 node_scrape_collector_success{collector="qdisc"} 1
+node_scrape_collector_success{collector="schedstat"} 1
 node_scrape_collector_success{collector="sockstat"} 1
 node_scrape_collector_success{collector="stat"} 1
 node_scrape_collector_success{collector="textfile"} 1
@@ -2546,6 +2652,18 @@ node_xfs_block_mapping_unmaps_total{device="sda1"} 1
 # HELP node_xfs_block_mapping_writes_total Number of block map for write operations for a filesystem.
 # TYPE node_xfs_block_mapping_writes_total counter
 node_xfs_block_mapping_writes_total{device="sda1"} 29
+# HELP node_xfs_directory_operation_create_total Number of times a new directory entry was created for a filesystem.
+# TYPE node_xfs_directory_operation_create_total counter
+node_xfs_directory_operation_create_total{device="sda1"} 2
+# HELP node_xfs_directory_operation_getdents_total Number of times the directory getdents operation was performed for a filesystem.
+# TYPE node_xfs_directory_operation_getdents_total counter
+node_xfs_directory_operation_getdents_total{device="sda1"} 52
+# HELP node_xfs_directory_operation_lookup_total Number of file name directory lookups which miss the operating systems directory name lookup cache.
+# TYPE node_xfs_directory_operation_lookup_total counter
+node_xfs_directory_operation_lookup_total{device="sda1"} 3
+# HELP node_xfs_directory_operation_remove_total Number of times an existing directory entry was created for a filesystem.
+# TYPE node_xfs_directory_operation_remove_total counter
+node_xfs_directory_operation_remove_total{device="sda1"} 1
 # HELP node_xfs_extent_allocation_blocks_allocated_total Number of blocks allocated for a filesystem.
 # TYPE node_xfs_extent_allocation_blocks_allocated_total counter
 node_xfs_extent_allocation_blocks_allocated_total{device="sda1"} 872
@@ -2558,6 +2676,33 @@ node_xfs_extent_allocation_extents_allocated_total{device="sda1"} 1
 # HELP node_xfs_extent_allocation_extents_freed_total Number of extents freed for a filesystem.
 # TYPE node_xfs_extent_allocation_extents_freed_total counter
 node_xfs_extent_allocation_extents_freed_total{device="sda1"} 0
+# HELP node_xfs_read_calls_total Number of read(2) system calls made to files in a filesystem.
+# TYPE node_xfs_read_calls_total counter
+node_xfs_read_calls_total{device="sda1"} 28
+# HELP node_xfs_vnode_active_total Number of vnodes not on free lists for a filesystem.
+# TYPE node_xfs_vnode_active_total counter
+node_xfs_vnode_active_total{device="sda1"} 4
+# HELP node_xfs_vnode_allocate_total Number of times vn_alloc called for a filesystem.
+# TYPE node_xfs_vnode_allocate_total counter
+node_xfs_vnode_allocate_total{device="sda1"} 0
+# HELP node_xfs_vnode_get_total Number of times vn_get called for a filesystem.
+# TYPE node_xfs_vnode_get_total counter
+node_xfs_vnode_get_total{device="sda1"} 0
+# HELP node_xfs_vnode_hold_total Number of times vn_hold called for a filesystem.
+# TYPE node_xfs_vnode_hold_total counter
+node_xfs_vnode_hold_total{device="sda1"} 0
+# HELP node_xfs_vnode_reclaim_total Number of times vn_reclaim called for a filesystem.
+# TYPE node_xfs_vnode_reclaim_total counter
+node_xfs_vnode_reclaim_total{device="sda1"} 1
+# HELP node_xfs_vnode_release_total Number of times vn_rele called for a filesystem.
+# TYPE node_xfs_vnode_release_total counter
+node_xfs_vnode_release_total{device="sda1"} 1
+# HELP node_xfs_vnode_remove_total Number of times vn_remove called for a filesystem.
+# TYPE node_xfs_vnode_remove_total counter
+node_xfs_vnode_remove_total{device="sda1"} 1
+# HELP node_xfs_write_calls_total Number of write(2) system calls made to files in a filesystem.
+# TYPE node_xfs_write_calls_total counter
+node_xfs_write_calls_total{device="sda1"} 0
 # HELP node_zfs_abd_linear_cnt kstat.zfs.misc.abdstats.linear_cnt
 # TYPE node_zfs_abd_linear_cnt untyped
 node_zfs_abd_linear_cnt 62
